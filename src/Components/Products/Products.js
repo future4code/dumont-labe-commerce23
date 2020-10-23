@@ -48,7 +48,7 @@ export class Products extends React.Component {
 
             <ProductsGrid>
                 {filteredAndOrderedList.map((product) => {
-                    return <ProductCards product={product}/>
+                    return <ProductCards onClickAdicionar={this.props.onClickAdicionar} product={product}/>
                 })}                
             </ProductsGrid>
 
