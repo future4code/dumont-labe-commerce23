@@ -29,10 +29,17 @@ export class Products extends React.Component {
 
     getFilteredAndOrderedList = () => {
         return this.props.product
-            .filter((product) => product.price < this.props.maxFilter)
-            .filter((product) => product.price > this.props.minFilter)
+            .filter((product) => product.price <= this.props.maxFilter)
+            .filter((product) => product.price >= this.props.minFilter)
             .filter((product) => product.name.includes(this.props.nameFilter))
             .sort((a, b) => this.state.sort === 'CRESCENTE' ? a.price - b.price : b.price - a.price)
+            .sort((a, b) => this.state.sort === 'DECRESCENTE' ? a.price + b.price : b.price + a.price)
+    }
+
+    onChangeFiltro = (event) => {
+        this.setState({
+            sort: event.target.value
+        })
     }
 
     render() {
@@ -40,7 +47,7 @@ export class Products extends React.Component {
         return <ProductsContainer>
            <ProductsHeader>
                <p>Quantidade de Produtos: {filteredAndOrderedList.length} </p>
-               <select value = {this.state.sort}>
+               <select value = {this.state.sort} onChange={this.onChangeFiltro}>
                     <option value = {'CRESCENTE'}>Preço: Crescente</option>
                     <option value= {'DECRESCENTE'}>Preço: Decrescente</option>
                </select>
@@ -48,7 +55,7 @@ export class Products extends React.Component {
 
             <ProductsGrid>
                 {filteredAndOrderedList.map((product) => {
-                    return <ProductCards product={product}/>
+                    return <ProductCards onClickAdicionar={this.props.onClickAdicionar} product={product}/>
                 })}                
             </ProductsGrid>
 
