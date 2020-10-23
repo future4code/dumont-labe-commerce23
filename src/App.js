@@ -29,7 +29,7 @@ const product = [
   {
     id: 3,
     name: "Item C",
-    price: 50.0,
+    price: 21.0,
     photo: "https://picsum.photos/202/200",
   },
 
@@ -72,9 +72,9 @@ const product = [
 
 class App extends React.Component {
   state = {
-    minFilter: '',
-    maxFilter: '600',
-    nameFilter: '',
+    minFilter: '0',
+    maxFilter: '200',
+    nameFilter: 'Item',
     productsInCart: [
       {
         id: 1,
@@ -94,6 +94,18 @@ class App extends React.Component {
     ]
   }
 
+  onChangeMinFilter = (event) => {
+    this.setState({minFilter: event.target.value})
+  }
+
+  onChangeMaxFilter = (event) => {
+    this.setState({maxFilter: event.target.value})
+  }  
+
+  onChangeNameFilter = (event) => {
+    this.setState({nameFilter: event.target.value})
+  }
+
 
   render() {
     return (
@@ -103,6 +115,9 @@ class App extends React.Component {
         minFilter={this.state.minFilter}
         maxFilter={this.state.maxFilter}
         nameFilter={this.state.nameFilter}
+        onChangeMinFilter={this.onChangeMinFilter}
+        onChangeMaxFilter={this.onChangeMaxFilter}
+        onChangeNameFilter={this.onChangeNameFilter}
         />
 
         <Products 
