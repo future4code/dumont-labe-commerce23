@@ -87,7 +87,6 @@ const product = [
     photo: "https://picsum.photos/200/204",
     quantity: 1
   }
-
 ]
 
 class App extends React.Component {
@@ -151,7 +150,7 @@ class App extends React.Component {
     productsInCart.filter(produto => {
       if (produto.id === id) {
         console.log(produto);
-        productsInCart.splice(produto.id - 2, 1)
+        productsInCart.splice(produto.id, 1)
       }
     })
     
